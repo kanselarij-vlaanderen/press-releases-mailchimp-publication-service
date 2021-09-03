@@ -1,0 +1,19 @@
+{
+  "name": "press-releases-mailchimp-publication-service",
+  "version": "0.1.0",
+  "description": "Microservice that ingests delta files for Mailchimp press releases",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanselarij/press-releases-mailchimp-publication-service.git"
+  },
+  "author": "redpencil.io",
+  "license": "MIT",
+  "dependencies": {
+    "@lblod/mu-auth-sudo": "^0.2.0",
+    "@mailchimp/mailchimp_marketing": "^3.0.59",
+    "moment": "^2.23.0"
+  }
+}
