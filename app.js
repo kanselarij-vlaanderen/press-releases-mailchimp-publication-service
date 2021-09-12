@@ -1,4 +1,5 @@
 import { app, errorHandler } from 'mu';
+import { cleanup } from './lib/mailchimp-service';
 import { getNotStartedPublicationTasks, TASK_ONGOING_STATUS } from './lib/publication-task';
 
 const requiredEnvironmentVariables = [
@@ -37,6 +38,22 @@ app.post('/delta', async function (req, res, next) {
     console.log(`No publication tasks found to be processed.`);
     return res.status(200).end();
   }
+});
+
+app.post('/cleanup', async function (req, res, next) {
+  console.log("Cleaning up Mailchimp...");
+
+  try {
+    //cleanup(); uncomment if needed
+
+  } catch (error) {
+    console.log(`Something went wrong while cleaning up Mailchimp.`);
+    console.log(error);
+    res.sendStatus(202);
+  }
+
+  console.log(`Cleaning up Mailchimp ended successfully.`);
+  return res.status(200).end();
 });
 
 app.use(errorHandler);
