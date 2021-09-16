@@ -1,5 +1,4 @@
 import { app, errorHandler } from 'mu';
-import { cleanup } from './lib/mailchimp-service';
 import { getNotStartedPublicationTasks, TASK_ONGOING_STATUS } from './lib/publication-task';
 
 const requiredEnvironmentVariables = [
