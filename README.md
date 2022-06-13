@@ -12,9 +12,16 @@ Add the service to your `docker-compose.yml`:
 ```yaml
 services:
   mailchimp-publication:
-    image: kanselarij/press-releases-mailchimp-publication-service:0.1.0
-    restart: always
-    logging: *default-logging
+    environment:
+      MAILCHIMP_API: 'api key'
+      MAILCHIMP_REPLY_TO: 'reply-to address'
+      MAILCHIMP_FROM_NAME: Vlivia-test
+      MAILCHIMP_LIST_ID: 5480352579
+      MAILCHIMP_INTEREST_CATEGORY_ID: fe04dcefd7
+      MAILCHIMP_KIND_CATEGORY_ID: 4757bb85ec
+      IMAGE_HOST: "https://vlivia.vlaanderen.be"
+    volumes:
+      - ./data/files:/share
 ```
 
 Next, make the service listen for new conversion tasks. Assuming a delta-notifier is already available in the stack, add the following rules to the delta-notifier's configuration in `./config/delta/rules.js`.
@@ -51,14 +58,14 @@ The following environment variables have to be configured:
 
 | Key | type | description |
 |-----|------|---------|
-| MAILCHIMP_API | string | api key to connect to mailchimp |
-| MAILCHIMP_REPLY_TO | string | mail address to be used as sender address |
-| MAILCHIMP_FROM_NAME | string | name to be used as sender details |
-| MAILCHIMP_LIST_ID | string | the list containing the subscribers
-| MAILCHIMP_INTEREST_CATEGORY_ID | string  | the list of interest categories (themes) linked to the list
-| MAILCHIMP_KIND_CATEGORY_ID | string  | the list of kind categories linked to the list
-| MAILCHIMP_SERVER | string  | the Mailchimp server to connect to. Default value 'us3'
-
+| `MAILCHIMP_API` | string | api key to connect to mailchimp |
+| `MAILCHIMP_REPLY_TO` | string | mail address to be used as sender address |
+| `MAILCHIMP_FROM_NAME` | string | name to be used as sender details |
+| `MAILCHIMP_LIST_ID` | string | the list containing the subscribers
+| `MAILCHIMP_INTEREST_CATEGORY_ID` | string  | the list of interest categories (themes) linked to the list
+| `MAILCHIMP_KIND_CATEGORY_ID` | string  | the list of kind categories linked to the list
+| `MAILCHIMP_SERVER` | string  | the Mailchimp server to connect to. Default value 'us3'
+| `IMAGE_HOST` | string | 'http://localhost' | Host the images in the mail template must be served from (must be accessible to the receivers of the email) |
 
 The service will fail if the environment variables are not defined properly.
 
