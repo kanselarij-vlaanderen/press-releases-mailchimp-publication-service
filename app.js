@@ -8,7 +8,6 @@ app.use(bodyParser.json({
   type: function(req) { return /^application\/json/.test(req.get('content-type')); }
 }));
 
-
 const requiredEnvironmentVariables = [
   'MAILCHIMP_API',
   'MAILCHIMP_FROM_NAME',
@@ -29,8 +28,6 @@ if (error) process.exit(1);
 
 app.post('/delta', async function (req, res, next) {
   const delta = req.body;
-  console.log(`Receiving delta ${JSON.stringify(delta)}`);
-
   const objects = delta
         .map((changeset) => changeset.inserts)
         .flat()
