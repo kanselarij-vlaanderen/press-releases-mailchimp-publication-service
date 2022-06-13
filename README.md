@@ -12,7 +12,7 @@ Add the service to your `docker-compose.yml`:
 ```yaml
 services:
   mailchimp-publication:
-    image: kanselarij/press-releases-mailchimp-publication-service:0.2.0
+    image: kanselarij/press-releases-mailchimp-publication-service:0.2.1
     environment:
       MAILCHIMP_API: 'api key'
       MAILCHIMP_REPLY_TO: 'reply-to address'
