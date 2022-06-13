@@ -14,7 +14,7 @@
   "dependencies": {
     "@lblod/mu-auth-sudo": "^0.2.0",
     "@mailchimp/mailchimp_marketing": "^3.0.59",
-    "moment": "^2.23.0",
-    "moment-timezone": "^0.5.27"
+    "date-fns": "^2.28.0",
+    "handlebars": "^4.7.7"
   }
 }
